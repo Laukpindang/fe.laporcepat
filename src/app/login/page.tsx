@@ -2,7 +2,13 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardHeader,
+	CardTitle
+} from '@/components/ui/card'
 import {
 	Field,
 	FieldDescription,
@@ -14,9 +20,12 @@ import { Input } from '@/components/ui/input'
 export default function Login() {
 	return (
 		<div className="flex flex-row min-h-screen justify-center items-center">
-			<Card className="w-3xl">
-				<CardHeader>
-					<CardTitle className="text-center">Selamat datang kembali</CardTitle>
+			<Card className="w-xl">
+				<CardHeader className="text-center">
+					<CardTitle>Selamat datang kembali</CardTitle>
+					<CardDescription>
+						Masuk untuk membuat dan memantau pengaduan Anda.
+					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<form>
