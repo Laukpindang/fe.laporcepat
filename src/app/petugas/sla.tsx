@@ -36,6 +36,7 @@ import {
   slaTren,
   pengaduanMelewatiBatas
 } from "./slaDummy";
+import { upCaseFirstLetter } from "@/lib/utils";
 
 
 const chartConfig = {
@@ -45,9 +46,6 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-const upCaseFirstLetter = (word: string) => {
-  return word.charAt(0).toUpperCase() + word.slice(1);
-};
 
 const deltaTextStyle = (delta: number | null) => {
   return delta
