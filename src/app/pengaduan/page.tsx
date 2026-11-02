@@ -44,11 +44,7 @@ export default function Pengaduan() {
 	]
 
 	return (
-		<div className="relative min-h-screen overflow-hidden bg-[#0a0a0b] px-6 pb-24 pt-28 text-zinc-100 antialiased">
-			<div
-				aria-hidden
-				className="pointer-events-none absolute inset-x-0 top-0 h-120 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(120,140,255,0.15),transparent_70%)]"
-			/>
+		<div className="relative min-h-screen overflow-hidden px-6 pb-24 pt-28">
 			<div className="relative mx-auto max-w-5xl">
 				{/* Header */}
 				<div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
