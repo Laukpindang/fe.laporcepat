@@ -3,16 +3,18 @@
 import { useState } from "react"
 import SLA from "./sla"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
+import Log from "./log"
+import Verifikasi from "./verifikasi"
 
 const petugasTabs = [
+    'SLA',
     'Verifikasi',
     'Log Pengaduan',
-    'SLA'
 ]
 
 
 export default function Petugas(){
-    const [activeTab, setActiveTab] = useState('SLA')
+    const [activeTab, setActiveTab] = useState('Verifikasi')
 
     return(
         <div className="relative min-h-screen overflow-hidden bg-[#0a0a0b] px-6 pb-24 pt-24 text-zinc-100 antialiased">
@@ -25,6 +27,12 @@ export default function Petugas(){
                 </TabsList>
                 <TabsContent value={'SLA'}>
                     <SLA tabSwitch={(e) => setActiveTab(e)}/>
+                </TabsContent>
+                <TabsContent value={'Verifikasi'}>
+                    <Verifikasi />
+                </TabsContent>
+                <TabsContent value={'Log Pengaduan'}>
+                    <Log />
                 </TabsContent>
             </Tabs>
         </div>
