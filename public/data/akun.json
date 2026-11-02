@@ -1,0 +1,189 @@
+[
+  {
+    "id": 1,
+    "nama": "Budi Santoso",
+    "email": "budi.santoso@email.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": "2026-08-12",
+    "nik": "3204010303880003",
+    "nomorPonsel": "081234567803",
+    "kecamatan": "Banjaran"
+  },
+  {
+    "id": 2,
+    "nama": "Siti Rahma",
+    "email": "siti.rahma@email.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": "2026-10-20",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 3,
+    "nama": "Agus Salim",
+    "email": "agus.salim@email.com",
+    "peran": "Masyarakat",
+    "aktif": false,
+    "bergabung": "2026-05-03",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 4,
+    "nama": "Rina Marlina",
+    "email": "rina.marlina@bandungkab.go.id",
+    "peran": "Petugas",
+    "aktif": true,
+    "bergabung": "2026-01-10",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 5,
+    "nama": "Dedi Kurniawan",
+    "email": "dedi.k@bandungkab.go.id",
+    "peran": "Petugas",
+    "aktif": true,
+    "bergabung": "2026-01-10",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 6,
+    "nama": "Nina Anggraeni",
+    "email": "nina.a@bandungkab.go.id",
+    "peran": "Petugas",
+    "aktif": false,
+    "bergabung": "2026-03-02",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 7,
+    "nama": "Hendra Gunawan",
+    "email": "hendra.g@bandungkab.go.id",
+    "peran": "Admin",
+    "aktif": true,
+    "bergabung": "2026-01-05",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 8,
+    "nama": "Dewi Lestari",
+    "email": "dewi.lestari@email.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": "2026-09-28",
+    "nik": "3204010404920004",
+    "nomorPonsel": "081234567804",
+    "kecamatan": "Majalaya"
+  },
+  {
+    "id": 9,
+    "nama": "Rudi Hartono",
+    "email": "rudi.h@email.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": "2026-10-14",
+    "nik": null,
+    "nomorPonsel": null,
+    "kecamatan": null
+  },
+  {
+    "id": 10,
+    "nama": "Tatang Sutarman",
+    "email": "tsut@gmail.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010101900001",
+    "nomorPonsel": "081234567801",
+    "kecamatan": "Soreang"
+  },
+  {
+    "id": 11,
+    "nama": "Siti Nurhaliza",
+    "email": "siti.nurhaliza@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010202910002",
+    "nomorPonsel": "081234567802",
+    "kecamatan": "Baleendah"
+  },
+  {
+    "id": 12,
+    "nama": "Rizky Maulana",
+    "email": "rizky.maulana@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010505950005",
+    "nomorPonsel": "081234567805",
+    "kecamatan": "Dayeuhkolot"
+  },
+  {
+    "id": 13,
+    "nama": "Ayu Wulandari",
+    "email": "ayu.wulandari@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010606930006",
+    "nomorPonsel": "081234567806",
+    "kecamatan": "Cileunyi"
+  },
+  {
+    "id": 14,
+    "nama": "Fajar Nugraha",
+    "email": "fajar.nugraha@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010707870007",
+    "nomorPonsel": "081234567807",
+    "kecamatan": "Ciwidey"
+  },
+  {
+    "id": 15,
+    "nama": "Intan Permata",
+    "email": "intan.permata@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010808960008",
+    "nomorPonsel": "081234567808",
+    "kecamatan": "Rancaekek"
+  },
+  {
+    "id": 16,
+    "nama": "Hendra Wijaya",
+    "email": "hendra.wijaya@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204010909890009",
+    "nomorPonsel": "081234567809",
+    "kecamatan": "Pangalengan"
+  },
+  {
+    "id": 17,
+    "nama": "Nabila Putri",
+    "email": "nabila.putri@example.com",
+    "peran": "Masyarakat",
+    "aktif": true,
+    "bergabung": null,
+    "nik": "3204011010940010",
+    "nomorPonsel": "081234567810",
+    "kecamatan": "Margahayu"
+  }
+]

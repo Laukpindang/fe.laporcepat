@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 import {
   Card,
@@ -33,16 +33,15 @@ import { pengaduanList } from "./verifikasiDummy";
 import FilterComboBoxItems from "@/components/custom/filter-select";
 import { Button } from "@/components/ui/button";
 
-const filterItems: {
-  status: string[];
-  kategori: string[];
-} = {
-  status: ["Semua Status", ...new Set(pengaduanList.map((p) => p.status))],
-  kategori: [
-    "Semua Kategori",
-    ...new Set(pengaduanList.map((p) => p.kategori)),
-  ],
-};
+import { Pengaduan, getPengaduan } from "@/lib/getPengaduan";
+import { countDays, formatShortMonthDate, getTodayLocalDate } from "@/lib/utils";
+import {
+  SLA_STANDAR,
+  PengaduanKategori,
+  STATUS_PENGADUAN,
+  KATEGORI_PENGADUAN,
+} from "@/const/pengaduan";
+import Link from "next/link";
 
 const statusVerifikasi = {
   "Menunggu Verifikasi": pengaduanList.filter((p) => p.status === "Diterima"),
@@ -54,31 +53,54 @@ const statusVerifikasi = {
 };
 
 export default function Verifikasi() {
-  const [selectedItem, setSelectedItem] = useState({
-    status: filterItems.status[0] || "",
-    kategori: filterItems.kategori[0] || "",
-  });
-
-  const [page, setPage] = useState(1);
   const itemsPerPage = 10;
+  const [lists, setLists] = useState<Pengaduan[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
 
-  const filteredPengaduan = pengaduanList.filter((pengaduan) => {
-    const statusMatch =
-      selectedItem.status === "Semua Status" ||
-      pengaduan.status === selectedItem.status;
 
-    const kategoriMatch =
-      selectedItem.kategori === "Semua Kategori" ||
-      pengaduan.kategori === selectedItem.kategori;
-    return statusMatch && kategoriMatch;
+  const [selectedItem, setSelectedItem] = useState({
+    status: "Semua Status",
+    kategori: "Semua Kategori",
   });
+
+  const filterItems: {
+    status: string[];
+    kategori: string[];
+  } = {
+    status: STATUS_PENGADUAN,
+    kategori: KATEGORI_PENGADUAN,
+  };
+
+  const filteredPengaduan = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    return lists.filter((p) => {
+      const statusMatch =
+        selectedItem.status === "Semua Status" ||
+        p.status === selectedItem.status;
+      const kategoriMatch =
+        selectedItem.kategori === "Semua Kategori" ||
+        p.kategori === selectedItem.kategori;
+      const searchMatch =
+        !q ||
+        p.judul.toLowerCase().includes(q) ||
+        p.id.toLowerCase().includes(q) ||
+        p.kecamatan.toLowerCase().includes(q);
+      return statusMatch && kategoriMatch && searchMatch;
+    });
+  }, [lists, selectedItem, search]);
+
+  const handleFilter = (item: string, filter: string) => {
+    setSelectedItem({ ...selectedItem, [filter]: item });
+  };
 
   const changePage = (newPage: number) => {
     if (
       newPage < 1 ||
-      newPage > Math.ceil(filteredPengaduan.length / itemsPerPage)
+      newPage > Math.max(1, Math.ceil(filteredPengaduan.length / itemsPerPage))
     ) {
-      return; // Prevent changing to an invalid page
+      return;
     }
     setPage(newPage);
   };
@@ -88,6 +110,14 @@ export default function Verifikasi() {
     const endIndex = startIndex + itemsPerPage;
     return filteredPengaduan.slice(startIndex, endIndex);
   };
+
+  useEffect(() => {
+    getPengaduan()
+      .then(setLists)
+      .catch(console.error)
+      .finally(() => setLoading(false));
+  }, []);
+
 
   return (
     <div className="my-5 flex flex-col gap-3">
@@ -124,9 +154,7 @@ export default function Verifikasi() {
               defaultItem={
                 filterItems[filter.toString() as keyof typeof filterItems][0]
               }
-              setSelectedItem={(item: string) =>
-                setSelectedItem({ ...selectedItem, [filter]: item })
-              }
+              setSelectedItem={(item: string) => handleFilter(item, filter)}
             />
           ))}
         </div>
@@ -145,8 +173,8 @@ export default function Verifikasi() {
                   <TableHead className="text-zinc-400 w-1/6">
                     Sisa SLA
                   </TableHead>
-                  <TableHead className="text-zinc-400 w-1/6">Status</TableHead>
-                  <TableHead className="text-zinc-400 w-1/6">
+                  <TableHead className="text-zinc-400 w-fit">Status</TableHead>
+                  <TableHead className="text-zinc-400 w-fit">
                     Tindakan
                   </TableHead>
                 </TableRow>
@@ -154,26 +182,37 @@ export default function Verifikasi() {
 
               <TableBody>
                 {activePageDatas().map((pengaduan) => {
-                  const parsedDate = new Date(pengaduan.masuk);
-                  const formattedDate = parsedDate.toLocaleDateString("id-ID", {
-                    day: "2-digit",
-                    month: "short",
-                    year: "numeric",
-                  });
+                  const formattedDate = formatShortMonthDate(pengaduan.tanggalMasuk)
+
+                  const batasRespon =
+                    SLA_STANDAR[pengaduan.kategori as PengaduanKategori]
+                      .responsHari;
+                  const respondLimitCondition =
+                    pengaduan.status === "Diterima" ||
+                    pengaduan.status === "Ditolak" ||
+                    pengaduan.status === "Selesai";
+                  const sisaSlaHari = !respondLimitCondition
+                    ? batasRespon -
+                      countDays(pengaduan.tanggalMasuk, getTodayLocalDate())
+                    : 1001;
 
                   const slaWarning = {
                     style: () => {
-                      if (pengaduan.sisaSlaHari < 0) {
+                      if (sisaSlaHari === 1001) {
+                        return "text-zinc-300/50";
+                      } else if (sisaSlaHari < 0) {
                         return "text-red-500";
-                      } else if (pengaduan.sisaSlaHari <= 2) {
+                      } else if (sisaSlaHari <= 2) {
                         return "text-yellow-500";
                       }
                     },
                     days: () => {
-                      if (pengaduan.sisaSlaHari < 0) {
-                        return `Terlambat ${pengaduan.sisaSlaHari * -1} Hari`;
+                      if (sisaSlaHari === 1001) {
+                        return `Selesai`;
+                      } else if (sisaSlaHari < 0) {
+                        return `Terlambat ${sisaSlaHari * -1} Hari`;
                       } else {
-                        return `${pengaduan.sisaSlaHari} hari lagi`;
+                        return `${sisaSlaHari} hari lagi`;
                       }
                     },
                   };
@@ -202,9 +241,13 @@ export default function Verifikasi() {
                         <Button
                           variant={`outline`}
                           className=" text-white px-4 py-2  rounded-md hover:bg-blue-600 transition-colors"
-                        >
-                          Tinjau
-                        </Button>
+                          render={
+                            <Link href={`/petugas/verifikasi/${pengaduan.id}`}>
+                              Tinjau
+                            </Link>
+                          }
+                          nativeButton={false}
+                        />
                       </TableCell>
                     </TableRow>
                   );
@@ -215,7 +258,9 @@ export default function Verifikasi() {
               <div>
                 <p className="w-100 flex items-center gap-2 ">
                   Current Page:
-                  <span className="text-start py-1 px-2 rounded-sm font-semibold border border-zinc-400">{page}</span>
+                  <span className="text-start py-1 px-2 rounded-sm font-semibold border border-zinc-400">
+                    {page}
+                  </span>
                 </p>
               </div>
               <Pagination className="mx-0 w-auto">
