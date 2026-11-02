@@ -20,14 +20,15 @@ Website untuk Pemerintah Kabupaten Bandung yang memerlukan mekanisme digital aga
 
 ### Prerequisites
 - Node.js 20+
-- MongoDB running locally
 
 ### Installation
+```
 git clone <repo-url>
 cd project-folder
 npm install
 cp .env.example .env
 npm start
+```
 
 Then open http://localhost:3000
 
@@ -36,14 +37,13 @@ Then open http://localhost:3000
 - Password: demo1234
 
 ## Project Structure 
-public/
-  data/          - JSON datas
-src/
-  app/           - App Route
-  components/    - Shadcn & Custom Components
-  const/         - Constant datas & types
-  hooks/         - Custom hooks
-  lib/           - functions
+- public/data/          - JSON datas
+- src/
+-   app/           - App Route
+-   components/    - Shadcn & Custom Component
+-   const/         - Constant datas & types
+-   hooks/         - Custom hooks
+-   lib/           - functions
 
 ## Known Issues <in_construction>
 1. Data tiruan (mock) masih tersebar dan terdesentralisasi, sehingga mengalami kesulitan dalam refactor untuk melakukan koneksi pada _single source_ data di foltder public/data
