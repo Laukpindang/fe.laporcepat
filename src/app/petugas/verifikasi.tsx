@@ -41,13 +41,13 @@ import {
   KATEGORI_PENGADUAN,
 } from "@/const/pengaduan";
 import Link from "next/link";
+import { usePengaduan } from "@/hooks/usePengaduan";
 
 
 
 export default function Verifikasi() {
   const itemsPerPage = 10;
-  const [lists, setLists] = useState<Pengaduan[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { pengaduanList: lists, loading, error} = usePengaduan('all')
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
@@ -111,21 +111,14 @@ const statusVerifikasi = {
     return filteredPengaduan.slice(startIndex, endIndex);
   };
 
-  useEffect(() => {
-    getPengaduan()
-      .then(setLists)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
 
 
   return (
     <div className="my-5 flex flex-col gap-3">
       <div className="flex flex-col gap-2 pb-8">
-        <p className="text-3xl font-semibold">Log Pengaduan</p>
+        <p className="text-3xl font-semibold">Dashboard verifikasi</p>
         <p className="text-zinc-500">
-          Catatan seluruh pengaduan yang pernah masuk, lengkap dengan pencarian
-          dan filter.
+          Antrean pengaduan masuk yang perlu diverifikasi dan didisposisikan.
         </p>
       </div>
 
@@ -254,6 +247,13 @@ const statusVerifikasi = {
                 })}
               </TableBody>
             </Table>
+            
+                {loading && (
+                  <div className="w-full text-center font-semibold text-zinc-500">Mengambil data...</div>
+                )}
+                {error && (
+                  <div className="w-full text-center font-semibold text-red-500">gagal mengambil data!</div>
+                )}
             <div className="pb-4 px-8 flex items-center justify-between gap-4">
               <div>
                 <p className="w-100 flex items-center gap-2 ">

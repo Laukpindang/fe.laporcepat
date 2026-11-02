@@ -38,7 +38,7 @@ export const initialLaporanPengaduan: Pengaduan = {
 };
 
 export async function getPengaduan(): Promise<Pengaduan[]> {
-  const response = await fetch("/data/pengaduan.json");
+  const response = await fetch("http://localhost:3000/data/pengaduan.json");
   if (!response.ok) {
     throw new Error(`Failed to fetch traits: ${response.status}`);
   }
