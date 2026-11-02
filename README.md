@@ -2,7 +2,7 @@
 
 Website untuk Pemerintah Kabupaten Bandung yang memerlukan mekanisme digital agar masyarakat dapat menyampaikan pengaduan fasilitas umum secara mudah sekaligus memungkinkan pemerintah melakukan pencatatan, verifikasi, disposisi, pemantauan, dan penyelesaian pengaduan secara terstruktur.
 
-![Screenshot](screenshots/home.png)
+![Document](https://docs.google.com/document/d/1rODBiKBegJ3ZofQ6ZP6qWMmHcu6V6N8Ee2IOpfG4WTU/edit?usp=sharing)
 
 ## Fitur
 - Registrasi dan Login pengguna
@@ -32,10 +32,16 @@ npm start
 
 Then open http://localhost:3000
 
-### Demo account <in_construction>
-- Email: demo@example.com
-- Password: demo1234
-
+### Demo account
+#### admin
+email: admin@laporcepat.com
+pw: admin123
+#### petugas
+email: petugas@laporcepat.com
+pw: petugas123
+#### user
+email: - (bebas)
+pw: - (bebas)
 ## Project Structure 
 - public/data/          - JSON datas
 - src/
