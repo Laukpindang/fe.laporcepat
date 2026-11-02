@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useState } from 'react'
 import SLA from "./sla"
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs"
 import Log from "./log"
