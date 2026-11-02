@@ -1,4 +1,9 @@
-import { Status_pengaduan } from "@/const/pengaduan";
+import {
+  PengaduanKategori,
+  SLA_STANDAR,
+  Status_pengaduan,
+} from "@/const/pengaduan";
+import { countDays, getTodayLocalDate } from "./utils";
 
 export interface Pengaduan {
   id: string;
@@ -29,9 +34,8 @@ export const initialLaporanPengaduan: Pengaduan = {
   tanggalMasuk: "",
   tanggalRespon: null,
   tanggalSelesai: null,
-  alasanDitolak: null
+  alasanDitolak: null,
 };
-
 
 export async function getPengaduan(): Promise<Pengaduan[]> {
   const response = await fetch("/data/pengaduan.json");
@@ -44,3 +48,16 @@ export async function getPengaduan(): Promise<Pengaduan[]> {
   return result;
 }
 
+export async function getPengaduanTerlambat() {
+  const pengaduanList = await getPengaduan();
+  const sekarang = getTodayLocalDate();
+
+  return pengaduanList.filter((p) => {
+    if (p.status === ("selesai" as Status_pengaduan)) return false;
+
+    const sla = SLA_STANDAR[p.kategori as PengaduanKategori];
+    if (!sla) return false;
+
+    return countDays(p.tanggalMasuk, sekarang) > sla.responsHari;
+  });
+}

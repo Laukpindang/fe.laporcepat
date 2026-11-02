@@ -29,7 +29,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 
-import { pengaduanList } from "./verifikasiDummy";
 import FilterComboBoxItems from "@/components/custom/filter-select";
 import { Button } from "@/components/ui/button";
 
@@ -43,14 +42,7 @@ import {
 } from "@/const/pengaduan";
 import Link from "next/link";
 
-const statusVerifikasi = {
-  "Menunggu Verifikasi": pengaduanList.filter((p) => p.status === "Diterima"),
-  "Sudah Diverifikasi": pengaduanList.filter(
-    (p) => p.status === "Diverifikasi",
-  ),
-  "Sedang Diproses": pengaduanList.filter((p) => p.status === "Diproses"),
-  "Melewati SLA": pengaduanList.filter((p) => p.sisaSlaHari < 0),
-};
+
 
 export default function Verifikasi() {
   const itemsPerPage = 10;
@@ -59,6 +51,14 @@ export default function Verifikasi() {
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
+const statusVerifikasi = {
+  "Menunggu Verifikasi": lists.filter((p) => p.status === "Diterima"),
+  "Sudah Diverifikasi": lists.filter(
+    (p) => p.status === "Diverifikasi",
+  ),
+  "Sedang Diproses": lists.filter((p) => p.status === "Diproses"),
+  "Sudah Selesai": lists.filter((p) => p.status === "Selesai"),
+};
 
   const [selectedItem, setSelectedItem] = useState({
     status: "Semua Status",
