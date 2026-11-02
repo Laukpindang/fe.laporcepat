@@ -29,7 +29,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 
-import { pengaduanList } from "./verifikasiDummy";
 import FilterComboBoxItems from "@/components/custom/filter-select";
 import { Button } from "@/components/ui/button";
 
@@ -42,23 +41,24 @@ import {
   KATEGORI_PENGADUAN,
 } from "@/const/pengaduan";
 import Link from "next/link";
+import { usePengaduan } from "@/hooks/usePengaduan";
 
-const statusVerifikasi = {
-  "Menunggu Verifikasi": pengaduanList.filter((p) => p.status === "Diterima"),
-  "Sudah Diverifikasi": pengaduanList.filter(
-    (p) => p.status === "Diverifikasi",
-  ),
-  "Sedang Diproses": pengaduanList.filter((p) => p.status === "Diproses"),
-  "Melewati SLA": pengaduanList.filter((p) => p.sisaSlaHari < 0),
-};
+
 
 export default function Verifikasi() {
   const itemsPerPage = 10;
-  const [lists, setLists] = useState<Pengaduan[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { pengaduanList: lists, loading, error} = usePengaduan('all')
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
 
+const statusVerifikasi = {
+  "Menunggu Verifikasi": lists.filter((p) => p.status === "Diterima"),
+  "Sudah Diverifikasi": lists.filter(
+    (p) => p.status === "Diverifikasi",
+  ),
+  "Sedang Diproses": lists.filter((p) => p.status === "Diproses"),
+  "Sudah Selesai": lists.filter((p) => p.status === "Selesai"),
+};
 
   const [selectedItem, setSelectedItem] = useState({
     status: "Semua Status",
@@ -111,21 +111,14 @@ export default function Verifikasi() {
     return filteredPengaduan.slice(startIndex, endIndex);
   };
 
-  useEffect(() => {
-    getPengaduan()
-      .then(setLists)
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, []);
 
 
   return (
     <div className="my-5 flex flex-col gap-3">
       <div className="flex flex-col gap-2 pb-8">
-        <p className="text-3xl font-semibold">Log Pengaduan</p>
+        <p className="text-3xl font-semibold">Dashboard verifikasi</p>
         <p className="text-zinc-500">
-          Catatan seluruh pengaduan yang pernah masuk, lengkap dengan pencarian
-          dan filter.
+          Antrean pengaduan masuk yang perlu diverifikasi dan didisposisikan.
         </p>
       </div>
 
@@ -254,6 +247,13 @@ export default function Verifikasi() {
                 })}
               </TableBody>
             </Table>
+            
+                {loading && (
+                  <div className="w-full text-center font-semibold text-zinc-500">Mengambil data...</div>
+                )}
+                {error && (
+                  <div className="w-full text-center font-semibold text-red-500">gagal mengambil data!</div>
+                )}
             <div className="pb-4 px-8 flex items-center justify-between gap-4">
               <div>
                 <p className="w-100 flex items-center gap-2 ">
