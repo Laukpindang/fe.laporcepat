@@ -1,24 +1,24 @@
 [
-  {
-    "id": 1,
-    "tahun": 2026,
-    "bulan": 9,
-    "totalMasuk": 2,
-    "totalPengaduanAktif": 2,
-    "kepatuhanPersen": 0.0,
-    "rataRataResponHari": 1.0,
-    "rataRataSelesaiHari": null,
-    "melewatiBatas": 2
-  },
-  {
-    "id": 2,
-    "tahun": 2026,
-    "bulan": 10,
-    "totalMasuk": 56,
-    "totalPengaduanAktif": 33,
-    "kepatuhanPersen": 57.1,
-    "rataRataResponHari": 1.0,
-    "rataRataSelesaiHari": 7.8,
-    "melewatiBatas": 24
-  }
+	{
+		"id": 1,
+		"tahun": 2026,
+		"bulan": 9,
+		"totalMasuk": 2,
+		"totalPengaduanAktif": 2,
+		"kepatuhanPersen": 0.0,
+		"rataRataResponHari": 1.0,
+		"rataRataSelesaiHari": null,
+		"melewatiBatas": 2
+	},
+	{
+		"id": 2,
+		"tahun": 2026,
+		"bulan": 10,
+		"totalMasuk": 56,
+		"totalPengaduanAktif": 33,
+		"kepatuhanPersen": 57.1,
+		"rataRataResponHari": 1.0,
+		"rataRataSelesaiHari": 7.8,
+		"melewatiBatas": 24
+	}
 ]

@@ -1,62 +1,62 @@
 [
-  {
-    "id": 1,
-    "opd": "Dinas PUPR",
-    "tahun": 2026,
-    "bulan": 9,
-    "ditangani": 2,
-    "selesai": 0,
-    "rataRataSelesaiHari": null,
-    "tepatWaktuPersen": 0.0
-  },
-  {
-    "id": 2,
-    "opd": "Dinas Kesehatan",
-    "tahun": 2026,
-    "bulan": 10,
-    "ditangani": 4,
-    "selesai": 2,
-    "rataRataSelesaiHari": 7.5,
-    "tepatWaktuPersen": 75.0
-  },
-  {
-    "id": 3,
-    "opd": "Dinas Lingkungan Hidup",
-    "tahun": 2026,
-    "bulan": 10,
-    "ditangani": 9,
-    "selesai": 6,
-    "rataRataSelesaiHari": 6.5,
-    "tepatWaktuPersen": 77.8
-  },
-  {
-    "id": 4,
-    "opd": "Dinas PUPR",
-    "tahun": 2026,
-    "bulan": 10,
-    "ditangani": 11,
-    "selesai": 2,
-    "rataRataSelesaiHari": 13.0,
-    "tepatWaktuPersen": 45.5
-  },
-  {
-    "id": 5,
-    "opd": "Dinas Pendidikan",
-    "tahun": 2026,
-    "bulan": 10,
-    "ditangani": 3,
-    "selesai": 0,
-    "rataRataSelesaiHari": null,
-    "tepatWaktuPersen": 33.3
-  },
-  {
-    "id": 6,
-    "opd": "Dinas Perhubungan",
-    "tahun": 2026,
-    "bulan": 10,
-    "ditangani": 15,
-    "selesai": 8,
-    "rataRataSelesaiHari": 7.6,
-    "tepatWaktuPersen": 73.3
-  }
+	{
+		"id": 1,
+		"opd": "Dinas PUPR",
+		"tahun": 2026,
+		"bulan": 9,
+		"ditangani": 2,
+		"selesai": 0,
+		"rataRataSelesaiHari": null,
+		"tepatWaktuPersen": 0.0
+	},
+	{
+		"id": 2,
+		"opd": "Dinas Kesehatan",
+		"tahun": 2026,
+		"bulan": 10,
+		"ditangani": 4,
+		"selesai": 2,
+		"rataRataSelesaiHari": 7.5,
+		"tepatWaktuPersen": 75.0
+	},
+	{
+		"id": 3,
+		"opd": "Dinas Lingkungan Hidup",
+		"tahun": 2026,
+		"bulan": 10,
+		"ditangani": 9,
+		"selesai": 6,
+		"rataRataSelesaiHari": 6.5,
+		"tepatWaktuPersen": 77.8
+	},
+	{
+		"id": 4,
+		"opd": "Dinas PUPR",
+		"tahun": 2026,
+		"bulan": 10,
+		"ditangani": 11,
+		"selesai": 2,
+		"rataRataSelesaiHari": 13.0,
+		"tepatWaktuPersen": 45.5
+	},
+	{
+		"id": 5,
+		"opd": "Dinas Pendidikan",
+		"tahun": 2026,
+		"bulan": 10,
+		"ditangani": 3,
+		"selesai": 0,
+		"rataRataSelesaiHari": null,
+		"tepatWaktuPersen": 33.3
+	},
+	{
+		"id": 6,
+		"opd": "Dinas Perhubungan",
+		"tahun": 2026,
+		"bulan": 10,
+		"ditangani": 15,
+		"selesai": 8,
+		"rataRataSelesaiHari": 7.6,
+		"tepatWaktuPersen": 73.3
+	}
 ]
